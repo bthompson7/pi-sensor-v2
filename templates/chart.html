@@ -1,73 +1,53 @@
 <!doctype html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/libs/bootstrap.min.css">
-<link rel="stylesheet" href="/static/main.css">
-<script src="/static/libs/chart.min.js"></script>
-<title>{{page_title}}</title>
-</head> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--- Libraries -->
+  <link rel="stylesheet" href="/static/libs/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/main.css">
+  <script src="/static/libs/chart.min.js"></script>
+
+  <!--- Custom JS -->
+  <script src="/static/chartDarkMode.js" async></script>
+
+
+  <title>{{page_title}}</title>
+</head>
 
 <body>
-<h1 align="center">{{page_title}}</h1>
-<canvas id="myChart" width="200" height="200"></canvas>
-<script>
+  <div class="page-title">
+    <h1>{{page_title}}</h1>
+  </div>
+  <canvas id="myChart" width="200" height="200"></canvas>
+  <script>
+    var ctx = document.getElementById('myChart');
 
-
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function bodyLoadDarkMode(){
-
-var isDarkMode = getCookie("mode");
-
-if(isDarkMode == "dark"){
-var element = document.body;
-element.classList.toggle("dark-mode");
-
-}
-
-
-}
-
-bodyLoadDarkMode();
-
-var ctx = document.getElementById('myChart');
-
-var chart = new Chart(ctx,
-{"type":"line","data":
-{"labels":{{x_val|tojson}},
-"datasets":[{"label":"Temperature (Fahrenheit)",
-"data":{{y_val}},
-"fill":false,"borderColor":"rgb(255, 0, 0)",
-"lineTension":0.1},{"label":"Humidity (%)",
-"data":{{y_val2}}, 
-"fill":false,"borderColor":"rgb(75, 190, 190)",
-"lineTension":0.1}]
-},options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-		    suggestedMin:40
-                }
-            }]
-        }
+    var chart = new Chart(ctx,
+      {
+        "type": "line", "data":
+          { "labels": {{ x_val| tojson}},
+    "datasets": [{
+      "label": "Temperature (Fahrenheit)",
+      "data": {{ y_val }},
+      "fill": false, "borderColor": "rgb(255, 0, 0)",
+      "lineTension": 0.1}, {
+      "label": "Humidity (%)",
+      "data": {{ y_val2 }},
+      "fill": false, "borderColor": "rgb(75, 190, 190)",
+      "lineTension": 0.1}]
+}, options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMin: 40
+          }
+        }]
+      }
     }
 });
 
-</script>
+  </script>
 </body>
+
 </html>

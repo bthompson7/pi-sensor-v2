@@ -71,7 +71,6 @@ def getTemp2():
 @app.route('/temp1Chart')
 @cache.cached(timeout=600) #600 seconds = 10 mins
 def chart1():
-   print("Request for /chart from ", request.remote_addr)
    select_temp_data = "select * from(select * from tempdata2 order by id desc limit 60)Var1 order by id asc"
    data2 = query_db(select_temp_data)
 
