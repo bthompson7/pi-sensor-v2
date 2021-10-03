@@ -1,5 +1,5 @@
 #other imports we need
-import time, os, json, re, Adafruit_DHT
+import time, os, json, re
 import datetime, pytz, sys, threading
 
 #flask imports
@@ -25,10 +25,10 @@ sema = threading.Semaphore()
 
 global mysql
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = ''
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = ''
-app.config['MYSQL_DATABASE_HOST'] = ''
+app.config['MYSQL_DATABASE_USER'] = 'admin'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
+app.config['MYSQL_DATABASE_DB'] = 'temps'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 #cache config.
@@ -41,27 +41,9 @@ config = {
 app.config.from_mapping(config)
 cache = Cache(app)
 
-if len(sys.argv) > 2:
-    print('You have specified too many arguments')
-    sys.exit()
-
-if len(sys.argv) < 2:
-   print('You need to supply more arguments')
-   sys.exit()
-
-
-is_maintenance_mode = sys.argv[1]
-
-@app.before_request
-def check_for_maintenance():
-   if is_maintenance_mode == 'True' and request.path != url_for('maintenance'):
-      print("Maintenance mode enabled! Request from ",request.remote_addr)
-      return redirect(url_for('maintenance'))
-
 @app.route('/')
 def main():
-   print("Request for / from ",request.remote_addr)
-   return render_template("data.html")
+   return render_template("index.html")
 
 @app.route("/getTemp1", methods=['GET'])
 def getTemp1():
@@ -112,10 +94,6 @@ def chart2():
    y_val2 = [humd[2] for humd in data2] #humid
    page_title = "Bedroom Sensor Chart"
    return render_template("chart.html",**locals())
-
-@app.route('/maintenance')
-def maintenance():
-   return render_template("503.html"), 503
 
 @app.errorhandler(404)
 def page_not_found(e):

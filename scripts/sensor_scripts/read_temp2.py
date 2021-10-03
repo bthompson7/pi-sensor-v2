@@ -44,8 +44,8 @@ while True:
 			humidRounded = round(humid,4)
 			if connflag == True:
 				message = json.dumps(dict(Temperature=tempRounded, Humidity=humidRounded))
-				mqttc.publish("bedroomData", payload, qos=1)
-				print("msg sent: " + payload)
+				mqttc.publish("bedroomData", message, qos=1)
+				print("msg sent: " + message)
 			else:
 				print("Connection issue with AWS IoT Core, is the policy setup correctly?")
 		except:
