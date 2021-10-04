@@ -25,10 +25,10 @@ sema = threading.Semaphore()
 
 global mysql
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'admin'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
-app.config['MYSQL_DATABASE_DB'] = 'temps'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = os.environ['DATABASE_USER']
+app.config['MYSQL_DATABASE_PASSWORD'] = os.environ['DATABASE_PASSWORD']
+app.config['MYSQL_DATABASE_DB'] = os.environ['DATABASE_DB']
+app.config['MYSQL_DATABASE_HOST'] = os.environ['DATABASE_HOST']
 mysql.init_app(app)
 
 #cache config.
