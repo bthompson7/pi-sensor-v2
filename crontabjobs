@@ -1,0 +1,1 @@
+@reboot screen -d -m python3 /home/ec2-user/pi-sensor-v2/server.py
