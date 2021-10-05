@@ -4,4 +4,5 @@ pytz
 Jinja2
 Flask
 Flask-Caching
+Flask-MySQL
 Adafruit-DHT
