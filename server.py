@@ -10,13 +10,6 @@ from flask_caching import Cache
 #mysql
 from flaskext.mysql import MySQL
 
-#twisted web server
-from twisted.internet import reactor
-from twisted.web.proxy import ReverseProxyResource
-from twisted.web.resource import Resource
-from twisted.web.server import Site
-from twisted.web.wsgi import WSGIResource
-
 #model classes
 from sensor_model import Sensor
 
@@ -122,9 +115,3 @@ def query_db(query):
         sema.release()
 
     return query_result
-
-#web server
-resource = WSGIResource(reactor, reactor.getThreadPool(), app)
-site = Site(resource)
-reactor.listenTCP(5000, site)
-reactor.run()
