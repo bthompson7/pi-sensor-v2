@@ -3,8 +3,10 @@
 #### AWS Services Used:
 - IoT Core
 - Lambda
-- EC2
 - RDS (MySQL)
+- EC2
+- Auto Scaling Group
+- Elastic Load Balancing
 
 #### Hardware Used:
 - 2 x Raspberry Pi 3B+
@@ -13,4 +15,4 @@
 #### How it works:
 - Two Raspberry Pi's read DHT22 sensors every 5 minutes and send the data via MQTT to AWS IoT where Lambda functions are triggered. 
 - The Lambda functions read the data from AWS IoT and inserts the data into a MySQL RDS instance.
-- The web app is deployed on an EC2 instance
+- The web app is deployed in an Auto Scaling Group in front of an Application Load Balancer
