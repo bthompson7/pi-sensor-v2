@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=www-data
 Group=www-data
-WorkingDirectory=/var/www/application/
+WorkingDirectory=/var/www/application/pi-sensor-v2
 ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:/var/www/application/pi-sensor-v2/application.sock wsgi:app
  
 [Install]
