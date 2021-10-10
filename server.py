@@ -18,10 +18,16 @@ sema = threading.Semaphore()
 
 global mysql
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = os.environ['DATABASE_USER']
-app.config['MYSQL_DATABASE_PASSWORD'] = os.environ['DATABASE_PASSWORD']
-app.config['MYSQL_DATABASE_DB'] = os.environ['DATABASE_DB']
-app.config['MYSQL_DATABASE_HOST'] = os.environ['DATABASE_HOST']
+
+
+with open('db_info.json', 'r') as db_info:
+    data=db_info.read()
+obj = json.loads(data)
+
+app.config['MYSQL_DATABASE_USER'] = str(obj['DATABASE_USER'])
+app.config['MYSQL_DATABASE_PASSWORD'] = str(obj['DATABASE_PASSWORD'])
+app.config['MYSQL_DATABASE_DB'] = str(obj['DATABASE_DB'])
+app.config['MYSQL_DATABASE_HOST'] = str(obj['DATABASE_HOST'])
 mysql.init_app(app)
 
 #cache config.
