@@ -5,7 +5,7 @@
 - Lambda
 - RDS (MySQL)
 - EC2
-- SNS (in development)
+- SNS/SES (in development)
 - Auto Scaling Group
 - Elastic Load Balancing
 
