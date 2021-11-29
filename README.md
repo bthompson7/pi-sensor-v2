@@ -5,7 +5,7 @@
 - Lambda
 - RDS (MySQL)
 - EC2
-- SNS/SES (in development)
+- SNS/SES (in development, so the sensors can communicate in case they fail or run into some other unexpected error)
 - Auto Scaling Group
 - Elastic Load Balancing
 
