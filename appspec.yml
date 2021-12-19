@@ -2,11 +2,18 @@ version: 0.0
 os: linux
 files:
   - source: nginx/application.service
-    destination: /etc/systemd/system/
+    destination: /etc/systemd/system
   - source: nginx/application.conf
-    destination: /etc/nginx/sites-available/
-  - source: /
-    destinaton: /var/www/application/pi-sensor-v2/
+    destination: /etc/nginx/sites-available
+  - source: /templates
+    destinaton: /var/www/application/pi-sensor-v2/templates
+  - source: /static
+    destinaton: /var/www/application/pi-sensor-v2/static
+  - source: /server.py
+    destinaton: /var/www/application/pi-sensor-v2
+  - source: requirements.txt
+    destinaton: /var/www/application/pi-sensor-v2
+
 hooks:
   ApplicationStop:
     - location: scripts/deployment_scripts/stop_app.sh
