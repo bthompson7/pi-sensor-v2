@@ -1,9 +1,9 @@
 version: 0.0
 os: linux
 files:
-  - source: /application.service
+  - source: nginx/application.service
     destination: /etc/systemd/system/application.service
-  - source: /application.conf
+  - source: nginx/application.conf
     destination: /etc/nginx/sites-available/application.conf
 hooks:
   ApplicationStop:
