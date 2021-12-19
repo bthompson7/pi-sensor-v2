@@ -2,9 +2,11 @@ version: 0.0
 os: linux
 files:
   - source: nginx/application.service
-    destination: /etc/systemd/system/application.service
+    destination: /etc/systemd/system/
   - source: nginx/application.conf
-    destination: /etc/nginx/sites-available/application.conf
+    destination: /etc/nginx/sites-available/
+  - source: /
+    destinaton: /var/www/application/pi-sensor-v2/
 hooks:
   ApplicationStop:
     - location: scripts/deployment_scripts/stop_app.sh
@@ -19,3 +21,7 @@ hooks:
 
   ApplicationStart:
     - location: scripts/deployment_scripts/start_app.sh
+
+  VaidateService:
+    - location: scripts/deployment_scripts/validate_service.sh
+      timeout: 300
