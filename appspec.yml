@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /application.service
+    destination: /etc/systemd/system/application.service
+  - source: /application.conf
+    destination: /etc/nginx/sites-available/application.conf
+hooks:
+  ApplicationStop:
+    - location: scripts/deployment_scripts/stop_app.sh
+      timeout: 300
+
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+
+  AfterInstall:
+    - location: scripts/deployment_scripts/start_app.sh
+      timeout: 300
+
+  ApplicationStart:
+    - location: scripts/deployment_scripts/start_app.sh

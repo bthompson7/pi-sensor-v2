@@ -1,0 +1,1 @@
+pip3 install -r /var/www/application/pi-sensor-v2/requirements.txt
