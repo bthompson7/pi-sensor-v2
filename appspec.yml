@@ -11,7 +11,7 @@ hooks:
       timeout: 300
 
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: scripts/deployment_scripts/install_dependencies.sh
 
   AfterInstall:
     - location: scripts/deployment_scripts/start_app.sh
