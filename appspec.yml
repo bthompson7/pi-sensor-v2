@@ -5,11 +5,11 @@ files:
     destination: /etc/systemd/system
   - source: nginx/application.conf
     destination: /etc/nginx/sites-available
-  - source: /templates
+  - source: templates/
     destinaton: /var/www/application/pi-sensor-v2/templates
-  - source: /static
+  - source: static/
     destinaton: /var/www/application/pi-sensor-v2/static
-  - source: /server.py
+  - source: server.py
     destinaton: /var/www/application/pi-sensor-v2
   - source: requirements.txt
     destinaton: /var/www/application/pi-sensor-v2
