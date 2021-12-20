@@ -2,8 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destinaton: /var/www/application
-    
+    destination: /var/www/application
 hooks:
   ApplicationStop:
     - location: scripts/deployment_scripts/stop_app.sh
