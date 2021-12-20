@@ -8,6 +8,7 @@
 - SNS/SES (in development, so the sensors can communicate in case they fail or run into some other unexpected error)
 - Auto Scaling Group
 - Elastic Load Balancing
+- CodeDeploy
 
 #### Hardware Used:
 - 2 x Raspberry Pi 3B+
