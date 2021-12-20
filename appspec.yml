@@ -6,9 +6,9 @@ files:
   - source: nginx/application.conf
     destination: /etc/nginx/sites-available
   - source: templates
-    destinaton: /var/www/application/pi-sensor-v2/templates
+    destinaton: /var/www/application/pi-sensor-v2
   - source: static
-    destinaton: /var/www/application/pi-sensor-v2/static
+    destinaton: /var/www/application/pi-sensor-v2
   - source: server.py
     destinaton: /var/www/application/pi-sensor-v2
   - source: requirements.txt
