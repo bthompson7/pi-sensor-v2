@@ -14,10 +14,17 @@ from flaskext.mysql import MySQL
 from sensor_model import Sensor
 
 app = Flask(__name__)
-sema = threading.Semaphore()
-
 global mysql
 mysql = MySQL()
+
+# dev db info
+'''
+app.config['MYSQL_DATABASE_USER'] = 'admin'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
+app.config['MYSQL_DATABASE_DB'] = 'temps'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
+'''
 
 
 with open('/home/ubuntu/db_info.json', 'r') as db_info:
@@ -94,8 +101,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 def query_db(query):
-    sema.acquire()
-
     try:
         query_result = "ok"
         db = mysql.get_db()
@@ -113,7 +118,5 @@ def query_db(query):
     except Exception as e:
         print("error querying the databse", e)
         raise Exception(e)
-    finally:
-        sema.release()
 
     return query_result
