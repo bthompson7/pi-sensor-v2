@@ -1,35 +1,30 @@
-.sensor-info-1{
 
+.sensor-info-1{
 display: table;
 margin-bottom: 35px;
 margin-left:auto;
 margin-right:auto;
-
 }
 
-
 .sensor-info-2{
-
 display: table;
 margin-bottom: 35px;
 margin-left:auto;
 margin-right:auto;
-
 }
 
 .sensor-location{
-
 font-weight: bold;
-
 }
 
+
+
 .page-title{
-
 text-align: center;
-
 }
 
 .dark-mode {
   background-color: #15202b;
   color: white;
 }
+

@@ -29,27 +29,23 @@ function darkMode() {
         setCookie("mode", "dark", 365);
         var element = document.body;
         element.classList.toggle("dark-mode");
+        document.getElementById("darkModeBtn").innerText = "Light Mode";
     }
-
-
 
     if (isDarkMode == "light") {
         console.log(isDarkMode);
         setCookie("mode", "dark", 365);
         var element = document.body;
         element.classList.toggle("dark-mode");
-
+        document.getElementById("darkModeBtn").innerText = "Light Mode";
     } else if (isDarkMode == "dark") {
         console.log(isDarkMode);
         setCookie("mode", "light", 365);
         var element = document.body;
         element.classList.toggle("dark-mode");
-
+        document.getElementById("darkModeBtn").innerText = "Dark Mode";
     }
-
-
 }
-
 
 function bodyLoadDarkMode() {
 
@@ -58,10 +54,10 @@ function bodyLoadDarkMode() {
     if (isDarkMode == "dark") {
         var element = document.body;
         element.classList.toggle("dark-mode");
-
+        document.getElementById("darkModeBtn").innerText = "Light Mode";
+    } else {
+        document.getElementById("darkModeBtn").innerText = "Dark  Mode";
     }
-
-
 }
 
 bodyLoadDarkMode();
