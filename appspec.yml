@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/application
+    destination: /var/www/application/pi-sensor-v2
 hooks:
   ApplicationStop:
     - location: scripts/deployment_scripts/stop_app.sh
