@@ -23,8 +23,8 @@ app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
 app.config['MYSQL_DATABASE_DB'] = 'temps'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-
 '''
+
 
 
 with open('/home/ubuntu/db_info.json', 'r') as db_info:
@@ -35,6 +35,7 @@ app.config['MYSQL_DATABASE_USER'] = str(obj['DATABASE_USER'])
 app.config['MYSQL_DATABASE_PASSWORD'] = str(obj['DATABASE_PASSWORD'])
 app.config['MYSQL_DATABASE_DB'] = str(obj['DATABASE_DB'])
 app.config['MYSQL_DATABASE_HOST'] = str(obj['DATABASE_HOST'])
+
 
 mysql.init_app(app)
 
@@ -55,22 +56,22 @@ def main():
 @app.route("/getTemp1", methods=['GET'])
 def getTemp1():
     try:
-        select1 = "select temp,humd,UNIX_TIMESTAMP(date),convert_tz(date,'+00:00','-05:00') from tempdata2 order by id desc limit 1"
+        select1 = "select temp,humd,UNIX_TIMESTAMP(date) * 1000,convert_tz(date,'+00:00','-05:00') from tempdata2 order by id desc limit 1"
         tempData1 = query_db(select1)
     except Exception as e:
         return jsonify(e), 500
     s = Sensor(tempData1[0][0],tempData1[0][1],tempData1[0][2],tempData1[0][3])
-    return {"temp":s.temp,"humid":s.humid,"last_updated":s.time_unix,"last_updated_normal": str(s.time_normal) + str(" EST")}, 200
+    return {"temp":s.temp,"humid":s.humid,"last_updated":s.time_unix,"last_updated_normal": s.time_normal}, 200
 
 @app.route("/getTemp2", methods=['GET'])
 def getTemp2():
     try:
-        select2 = "select temp,humd,UNIX_TIMESTAMP(date),convert_tz(date,'+00:00','-05:00') from tempdata3 order by id desc limit 1"
+        select2 = "select temp,humd,UNIX_TIMESTAMP(date) * 1000,convert_tz(date,'+00:00','-05:00') from tempdata3 order by id desc limit 1"
         tempData2 = query_db(select2)
     except Exception as e:
         return jsonify(e), 500
     s = Sensor(tempData2[0][0],tempData2[0][1],tempData2[0][2],tempData2[0][3])
-    return {"temp":s.temp,"humid":s.humid,"last_updated":s.time_unix,"last_updated_normal":str(s.time_normal) + str(" EST")}, 200
+    return {"temp":s.temp,"humid":s.humid,"last_updated":s.time_unix,"last_updated_normal":s.time_normal}, 200
 
 @app.route('/temp1Chart')
 @cache.cached(timeout=600) #600 seconds = 10 mins
