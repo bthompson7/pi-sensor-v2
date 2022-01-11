@@ -1,5 +1,7 @@
 ### Raspberry Pi Sensor Web App running on AWS
 
+[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/bthompson7/pi-sensor-v2)
+
 #### AWS Services Used:
 - IoT Core
 - Lambda
