@@ -25,8 +25,6 @@ app.config['MYSQL_DATABASE_DB'] = 'temps'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 '''
 
-
-
 with open('/home/ubuntu/db_info.json', 'r') as db_info:
     data=db_info.read()
 obj = json.loads(data)
@@ -35,7 +33,6 @@ app.config['MYSQL_DATABASE_USER'] = str(obj['DATABASE_USER'])
 app.config['MYSQL_DATABASE_PASSWORD'] = str(obj['DATABASE_PASSWORD'])
 app.config['MYSQL_DATABASE_DB'] = str(obj['DATABASE_DB'])
 app.config['MYSQL_DATABASE_HOST'] = str(obj['DATABASE_HOST'])
-
 
 mysql.init_app(app)
 

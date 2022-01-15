@@ -104,6 +104,9 @@ function timeSince(date) {
 
   if (interval > 1 || interval === 0) {
     intervalType += 's ago';
+  } else if (interval == 1) {
+    intervalType += ' ago';
+
   }
 
   return interval + ' ' + intervalType;
