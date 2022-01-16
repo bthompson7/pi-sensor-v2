@@ -1,14 +1,12 @@
 #other imports we need
 import time, os, json, re
-import datetime, pytz, sys, threading, pymysql, multiprocessing
+import datetime, pytz, sys, 
+import threading, pymysql, multiprocessing
 
 #flask imports
 from flask import Flask,render_template
 from flask import request,Response,redirect,url_for,jsonify
 from flask_caching import Cache
-
-#mysql
-from flaskext.mysql import MySQL
 
 #model classes
 from sensor_model import Sensor
@@ -20,11 +18,10 @@ global DATABASE_DB
 global DATABASE_HOST
 
 semaphore = multiprocessing.Semaphore(50)
-mysql = MySQL()
 
 # dev db info
 
-''' 
+'''
 DATABASE_USER = 'admin'
 DATABASE_PASSWORD = 'password'
 DATABASE_DB = 'temps'
