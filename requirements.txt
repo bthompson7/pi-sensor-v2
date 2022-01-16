@@ -4,4 +4,3 @@ pytz
 Jinja2==3.0.2
 Flask
 Flask-Caching
-Flask-MySQL
