@@ -37,6 +37,7 @@ DATABASE_PASSWORD = str(obj['DATABASE_PASSWORD'])
 DATABASE_DB = str(obj['DATABASE_DB'])
 DATABASE_HOST = str(obj['DATABASE_HOST'])
 
+
 #cache config.
 config = {
     "DEBUG": False,
@@ -51,7 +52,7 @@ cache = Cache(app)
 def main():
     return render_template("index.html")
 
-@app.route("/getTemp1", methods=['GET'])
+@app.route("/getSensor1", methods=['GET'])
 def getTemp1():
     try:
         select1 = "select temp,humd,UNIX_TIMESTAMP(date) * 1000 as 'unixTime' ,convert_tz(date,'+00:00','-05:00') as 'normalTime' from tempdata2 order by id desc limit 1"
@@ -62,7 +63,7 @@ def getTemp1():
 
     return {"temp":s.temp,"humid":s.humid,"last_updated":s.time_unix,"last_updated_normal": s.time_normal}, 200
 
-@app.route("/getTemp2", methods=['GET'])
+@app.route("/getSensor2", methods=['GET'])
 def getTemp2():
     try:
         select2 = "select temp,humd,UNIX_TIMESTAMP(date) * 1000 as 'unixTime' ,convert_tz(date,'+00:00','-05:00') as 'normalTime' from tempdata3 order by id desc limit 1"
@@ -73,7 +74,7 @@ def getTemp2():
 
     return {"temp":s.temp,"humid":s.humid,"last_updated":s.time_unix,"last_updated_normal":s.time_normal}, 200
 
-@app.route('/temp1Chart')
+@app.route('/sensor1Chart')
 @cache.cached(timeout=600) #600 seconds = 10 mins
 def chart1():
     select_temp_data = "select temp,humd, convert_tz(date,'+00:00','-05:00') as 'normalTime'  from(select * from tempdata2 order by id desc limit 60)Var1 order by id asc"
@@ -85,7 +86,7 @@ def chart1():
     
     return render_template("chart.html",**locals())
 
-@app.route('/temp2Chart')
+@app.route('/sensor2Chart')
 @cache.cached(timeout=600) #600 seconds = 10 mins
 def chart2():
     select_temp_data = "select temp,humd, convert_tz(date,'+00:00','-05:00') as 'normalTime' from(select * from tempdata3 order by id desc limit 60)Var1 order by id asc"

@@ -21,7 +21,7 @@ function getTempData() {
       document.getElementById("temp-sensor-1").innerHTML = stringToDisplay;
       document.getElementById("hidden-time-1").innerHTML = unixTime;
 
-      document.getElementById("last-updated-1").innerHTML = "Last Updated: " + timeSince(unixTime);
+      document.getElementById("last-updated-1").innerHTML = "Updated " + timeSince(unixTime);
     } else if (this.readyState == 4 && this.status != 200) {
 
       console.error(http.response);
@@ -29,7 +29,7 @@ function getTempData() {
     }
   };
 
-  http.open("GET", "/getTemp1");
+  http.open("GET", "/getSensor1");
   http.send();
 
   //2nd temp sensor
@@ -47,7 +47,7 @@ function getTempData() {
       //display the data
       var stringToDisplay = "Temperature: " + tempValue + "&#176;F   " + " Humidity: " + humidValue + "%";
       document.getElementById("temp-sensor-2").innerHTML = stringToDisplay;
-      document.getElementById("last-updated-2").innerHTML = "Last Updated: " + timeSince(unixTime);
+      document.getElementById("last-updated-2").innerHTML = "Updated " + timeSince(unixTime);
       document.getElementById("hidden-time-2").innerHTML = unixTime;
 
 
@@ -57,29 +57,24 @@ function getTempData() {
     }
   };
 
-  http2.open("GET", "/getTemp2");
+  http2.open("GET", "/getSensor2");
   http2.send();
 }
 
 function renderTimeSince(unixTime) {
   var sensorTime1 = document.getElementById("hidden-time-1").innerHTML;
   var sensorTime2 = document.getElementById("hidden-time-2").innerHTML;
-  document.getElementById("last-updated-1").innerHTML = "Last Updated: " + timeSince(sensorTime1);
-  document.getElementById("last-updated-2").innerHTML = "Last Updated: " + timeSince(sensorTime2);
+  document.getElementById("last-updated-1").innerHTML = "Updated " + timeSince(sensorTime1);
+  document.getElementById("last-updated-2").innerHTML = "Updated " + timeSince(sensorTime2);
 }
 
-// Please ignore this disaster
 function timeSince(date) {
 
   var seconds = Math.floor((new Date() - date) / 1000);
   var intervalType;
 
-  var interval = Math.floor(seconds / 31536000);
-  if (interval >= 1) {
-    intervalType = 'year';
-  } else {
-    interval = Math.floor(seconds / 2592000);
-    if (interval >= 1) {
+  interval = Math.floor(seconds / 2592000);
+   if (interval >= 1) {
       intervalType = 'month';
     } else {
       interval = Math.floor(seconds / 86400);
@@ -100,7 +95,6 @@ function timeSince(date) {
         }
       }
     }
-  }
 
   if (interval > 1 || interval === 0) {
     intervalType += 's ago';
@@ -116,7 +110,7 @@ function timeSince(date) {
 getTempData();
 
 
-setInterval(getTempData, 300000); //300000
+setInterval(getTempData, 300000);
 setInterval(renderTimeSince, 1000);
 
 
